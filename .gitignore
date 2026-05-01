@@ -1,0 +1,15 @@
+node_modules/
+data/
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+.edge-*/
+*.log
+*.pid
+coverage/
+dist/
+build/
+.DS_Store
+Thumbs.db

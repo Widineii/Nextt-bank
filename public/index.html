@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111316" />
+    <title>Nexttt Bank</title>
+    <link rel="manifest" href="manifest.webmanifest?v=12" />
+    <link rel="stylesheet" href="styles.css?v=12" />
+  </head>
+  <body>
+    <section class="auth-screen" id="authScreen">
+      <div class="auth-brand">
+        <div class="brand-mark">N</div>
+        <p class="eyebrow">Nexttt Bank</p>
+        <h1>Banco hibrido com seguranca desde o primeiro passo.</h1>
+        <p>Entre como cliente demo ou admin para testar conta, transacoes, auditoria, nuvem e painel administrativo.</p>
+      </div>
+
+      <form class="auth-card" id="loginForm">
+        <div>
+          <h2>Acessar sistema</h2>
+          <p>Use: cliente@nextt.local ou admin@nextt.local</p>
+        </div>
+        <label>E-mail
+          <input id="email" type="email" autocomplete="username" value="cliente@nextt.local" required />
+        </label>
+        <label>Senha
+          <input id="password" type="password" autocomplete="current-password" value="Nextt@123" required />
+        </label>
+        <label>Nome para cadastro rapido
+          <input id="registerName" type="text" autocomplete="name" placeholder="Seu nome completo" />
+        </label>
+        <details class="auth-details">
+          <summary>Cadastro completo</summary>
+          <div class="compact-grid">
+            <label>CPF
+              <input id="registerCpf" type="text" inputmode="numeric" placeholder="000.000.000-00" />
+            </label>
+            <label>Nascimento
+              <input id="registerBirth" type="date" />
+            </label>
+            <label>Telefone
+              <input id="registerPhone" type="tel" placeholder="(00) 00000-0000" />
+            </label>
+            <label>Endereco
+              <input id="registerAddress" type="text" placeholder="Rua, numero, cidade" />
+            </label>
+            <label class="checkline">
+              <input id="registerTerms" type="checkbox" /> Aceito os termos demo
+            </label>
+          </div>
+        </details>
+        <button class="primary-button" type="submit">Entrar com seguranca</button>
+        <button class="ghost-button" id="registerButton" type="button">Criar cliente demo</button>
+        <button class="ghost-button" id="resetPasswordButton" type="button">Recuperar senha demo</button>
+        <div class="legal-links">
+          <a href="terms.html" target="_blank">Termos</a>
+          <a href="privacy.html" target="_blank">Privacidade</a>
+        </div>
+        <p class="inline-result" id="loginResult">Senha demo: Nextt@123</p>
+      </form>
+    </section>
+
+    <div class="app-shell hidden" id="appShell">
+      <aside class="sidebar" aria-label="Menu principal">
+        <div class="brand">
+          <div class="brand-mark">N</div>
+          <div>
+            <strong>Nexttt Bank</strong>
+            <span>Sistema bancario hibrido</span>
+          </div>
+        </div>
+
+        <nav class="nav-list">
+          <button class="nav-item active" data-view="home" type="button">Inicio</button>
+          <button class="nav-item" data-view="account" type="button">Conta</button>
+          <button class="nav-item" data-view="onboarding" type="button">Abertura</button>
+          <button class="nav-item" data-view="cards" type="button">Cartoes</button>
+          <button class="nav-item" data-view="credit" type="button">Credito</button>
+          <button class="nav-item" data-view="investments" type="button">Investimentos</button>
+          <button class="nav-item" data-view="security" type="button">Seguranca</button>
+          <button class="nav-item" data-view="reports" type="button">Relatorios</button>
+          <button class="nav-item" data-view="cloud" type="button">Nuvem</button>
+          <button class="nav-item" data-view="profile" type="button">Perfil</button>
+          <button class="nav-item" data-view="notifications" type="button">Alertas</button>
+          <button class="nav-item" data-view="admin" type="button">Admin</button>
+        </nav>
+
+          <div class="security-card">
+          <span>Status de risco</span>
+          <strong id="riskLabel">Baixo</strong>
+          <div class="risk-bar"><span></span></div>
+          <small id="sessionLabel">Sessao protegida</small>
+        </div>
+      </aside>
+
+      <main class="content">
+        <header class="topbar">
+          <button class="menu-button" type="button" aria-label="Abrir menu">Menu</button>
+          <div>
+            <p class="eyebrow">Painel do cliente</p>
+            <h1>Controle financeiro seguro e direto</h1>
+          </div>
+          <div class="user-chip">
+            <span id="userInitials">CL</span>
+            <div>
+              <strong id="userName">Cliente demo</strong>
+              <small id="userRole">Conta verificada</small>
+            </div>
+          </div>
+          <button class="ghost-button" id="logoutButton" type="button">Sair</button>
+          <button class="ghost-button" id="themeButton" type="button">Tema</button>
+        </header>
+
+        <section class="view active" id="home">
+          <div class="hero-grid">
+            <article class="balance-panel">
+              <span>Saldo disponivel</span>
+              <strong id="balanceValue">R$ 0,00</strong>
+              <p id="insightText">Atualizado por API local com validacao no servidor.</p>
+              <div class="quick-actions">
+                <button data-shortcut="deposit" type="button">Depositar</button>
+                <button data-shortcut="transfer" type="button">Transferir</button>
+                <button data-shortcut="withdraw" type="button">Sacar</button>
+                <button id="hideBalanceButton" type="button">Ocultar saldo</button>
+              </div>
+            </article>
+
+            <article class="metric-panel">
+              <span>Entradas</span>
+              <strong id="incomeValue">R$ 0,00</strong>
+              <small>Mes atual</small>
+            </article>
+            <article class="metric-panel">
+              <span>Saidas</span>
+              <strong id="expenseValue">R$ 0,00</strong>
+              <small>Limite diario ativo</small>
+            </article>
+            <article class="metric-panel">
+              <span>Meta mensal</span>
+              <strong id="goalValue">R$ 5.000,00</strong>
+              <small id="goalStatus">Acompanhando</small>
+            </article>
+          </div>
+
+          <section class="innovation-strip">
+            <article>
+              <span>Radar inteligente</span>
+              <strong id="smartRadar">Fluxo saudavel</strong>
+              <small>Analise simples por entradas, saidas e limite</small>
+            </article>
+            <article>
+              <span>Identidade financeira</span>
+              <strong>Nexttt Flow</strong>
+              <small>Experiencia propria para mobile e desktop</small>
+            </article>
+            <article>
+              <span>Modo evolutivo</span>
+              <strong>Pronto para nuvem</strong>
+              <small>JSON agora, PostgreSQL depois</small>
+            </article>
+          </section>
+
+          <section class="panel">
+            <div class="panel-title">
+              <h2>Grafico de fluxo</h2>
+              <span class="badge">Tempo real</span>
+            </div>
+            <div class="flow-chart" id="flowChart"></div>
+          </section>
+
+          <div class="split-grid">
+            <section class="panel">
+              <div class="panel-title">
+                <h2>Movimentacoes recentes</h2>
+                <button class="ghost-button" data-view-jump="account" type="button">Ver extrato</button>
+              </div>
+              <div class="transaction-list" id="transactionList"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-title">
+                <h2>Central do banco</h2>
+                <span class="badge">20 upgrades</span>
+              </div>
+              <div class="status-grid">
+                <div><span>Conta</span><strong id="accountStatus">Ativa</strong></div>
+                <div><span>Limite hoje</span><strong id="dailyLimit">R$ 10.000,00</strong></div>
+                <div><span>PIX demo</span><strong>Online</strong></div>
+                <div><span>Favoritos</span><strong id="favoriteCount">0</strong></div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="account">
+          <div class="panel">
+            <div class="panel-title">
+              <h2>Operacoes bancarias core</h2>
+              <span class="badge">API real</span>
+            </div>
+            <div class="toolbar">
+              <input id="transactionSearch" type="search" placeholder="Buscar no extrato" />
+              <select id="transactionFilter">
+                <option value="all">Todos</option>
+                <option value="in">Entradas</option>
+                <option value="out">Saidas</option>
+              </select>
+              <button class="ghost-button" id="receiptButton" type="button">Gerar comprovante</button>
+              <button class="ghost-button" id="pdfReceiptButton" type="button">PDF</button>
+            </div>
+            <div class="form-grid">
+              <label>Tipo de operacao
+                <select id="operationType">
+                  <option value="deposit">Deposito</option>
+                  <option value="withdraw">Saque</option>
+                  <option value="transfer">Transferencia</option>
+                  <option value="pix">PIX simulado</option>
+                </select>
+              </label>
+              <label>Valor
+                <input id="operationValue" type="number" min="1" step="0.01" placeholder="250,00" />
+              </label>
+              <label>Destino
+                <input id="operationTarget" type="text" placeholder="conta destino, CPF ou chave" />
+              </label>
+              <button class="primary-button" id="simulateOperation" type="button">Executar operacao</button>
+            </div>
+            <p class="inline-result" id="operationResult">Pronto para validar uma operacao.</p>
+            <div class="receipt-box" id="receiptBox">Nenhum comprovante gerado ainda.</div>
+          </div>
+        </section>
+
+        <section class="view" id="onboarding">
+          <div class="panel">
+            <div class="panel-title">
+              <h2>Abertura de conta</h2>
+              <span class="badge">KYC demo</span>
+            </div>
+            <div class="form-grid">
+              <label>CPF
+                <input id="kycCpf" type="text" inputmode="numeric" placeholder="000.000.000-00" />
+              </label>
+              <label>Data de nascimento
+                <input id="kycBirth" type="date" />
+              </label>
+              <label>Telefone
+                <input id="kycPhone" type="tel" placeholder="(00) 00000-0000" />
+              </label>
+              <label>Endereco
+                <input id="kycAddress" type="text" placeholder="Rua, numero, cidade" />
+              </label>
+              <label>Renda mensal
+                <input id="kycIncome" type="number" min="0" step="100" placeholder="3500" />
+              </label>
+              <button class="primary-button" id="openAccountButton" type="button">Enviar analise</button>
+            </div>
+            <div class="timeline" id="onboardingTimeline">
+              <div class="active"><strong>1</strong><span>Dados pessoais</span></div>
+              <div><strong>2</strong><span>Analise de risco</span></div>
+              <div><strong>3</strong><span>Conta liberada</span></div>
+            </div>
+            <p class="inline-result" id="onboardingResult">Preencha os dados para simular a abertura.</p>
+          </div>
+        </section>
+
+        <section class="view" id="cards">
+          <div class="card-showcase">
+            <article class="bank-card">
+              <span>Nexttt Black</span>
+              <strong>5214 **** **** 8840</strong>
+              <small>Validade 04/31</small>
+            </article>
+            <div class="panel">
+              <h2>Cartao de credito</h2>
+              <div class="limit-row"><span>Limite usado</span><strong>R$ 1.820,00 / R$ 8.000,00</strong></div>
+              <div class="progress"><span style="width: 22%"></span></div>
+              <button class="primary-button" type="button">Bloquear cartao</button>
+              <div class="status-grid">
+                <div><span>Virtual</span><strong>Ativo</strong></div>
+                <div><span>Compras online</span><strong>Ligado</strong></div>
+              </div>
+              <div class="form-grid">
+                <label>Compra no cartao
+                  <input id="cardPurchaseValue" type="number" min="1" step="0.01" placeholder="120,00" />
+                </label>
+                <button class="primary-button" id="cardPurchaseButton" type="button">Lancar compra</button>
+                <label>Pagamento da fatura
+                  <input id="invoicePaymentValue" type="number" min="1" step="0.01" placeholder="500,00" />
+                </label>
+                <button class="ghost-button" id="invoicePaymentButton" type="button">Pagar fatura</button>
+              </div>
+              <p class="inline-result" id="cardResult">Fatura aberta: R$ 1.820,00.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="credit">
+          <div class="panel">
+            <div class="panel-title">
+              <h2>Emprestimos e investimentos</h2>
+              <span class="badge">Fase 2</span>
+            </div>
+            <div class="product-grid">
+              <article><strong>Credito pessoal</strong><span>Analise com score interno e aprovacao manual.</span></article>
+              <article><strong>CDB Nexttt</strong><span>Rendimento simulado com resgate antecipado.</span></article>
+              <article><strong>Poupanca inteligente</strong><span>Metas, rendimento e acompanhamento mensal.</span></article>
+              <article><strong>Score Nexttt</strong><span id="creditScore">Score inicial: 720</span></article>
+            </div>
+            <div class="form-grid">
+              <label>Valor do emprestimo
+                <input id="loanAmount" type="number" min="100" step="100" placeholder="5000" />
+              </label>
+              <label>Parcelas
+                <input id="loanInstallments" type="number" min="1" max="48" placeholder="12" />
+              </label>
+              <button class="primary-button" id="loanSimulateButton" type="button">Simular parcelas</button>
+              <button class="ghost-button" id="loanRequestButton" type="button">Solicitar analise</button>
+            </div>
+            <p class="inline-result" id="loanResult">Taxa demo: 2,4% ao mes.</p>
+          </div>
+        </section>
+
+        <section class="view" id="investments">
+          <div class="panel">
+            <div class="panel-title">
+              <h2>Investimentos Nexttt</h2>
+              <span class="badge">Rendimento demo</span>
+            </div>
+            <div class="product-grid">
+              <article><strong>CDB Fluxo</strong><span>110% do CDI simulado, liquidez diaria.</span></article>
+              <article><strong>Reserva Smart</strong><span>Meta de emergencia com aportes programados.</span></article>
+              <article><strong>Carteira Core</strong><span>Saldo separado por objetivos financeiros.</span></article>
+            </div>
+            <div class="form-grid">
+              <label>Produto
+                <select id="investmentProduct">
+                  <option value="cdb">CDB Fluxo</option>
+                  <option value="reserva">Reserva Smart</option>
+                  <option value="core">Carteira Core</option>
+                </select>
+              </label>
+              <label>Valor
+                <input id="investmentAmount" type="number" min="1" step="0.01" placeholder="1000" />
+              </label>
+              <button class="primary-button" id="investmentApplyButton" type="button">Aplicar</button>
+              <button class="ghost-button" id="investmentRedeemButton" type="button">Resgatar</button>
+            </div>
+            <div class="mini-list" id="investmentList"></div>
+          </div>
+        </section>
+
+        <section class="view" id="security">
+          <div class="panel">
+            <div class="panel-title">
+              <h2>Camadas de seguranca</h2>
+              <span class="badge">Prioridade alta</span>
+            </div>
+            <div class="check-grid">
+              <label><input type="checkbox" checked /> Senha com PBKDF2 e salt unico</label>
+              <label><input type="checkbox" checked /> Bloqueio por tentativas erradas</label>
+              <label><input type="checkbox" checked /> Tokens de sessao no backend</label>
+              <label><input type="checkbox" checked /> Perfis cliente, caixa e admin</label>
+              <label><input type="checkbox" checked /> Logs de auditoria</label>
+              <label><input type="checkbox" /> 2FA para fase seguinte</label>
+              <label><input type="checkbox" checked /> Score de seguranca visual</label>
+              <label><input type="checkbox" checked /> Comprovante rastreavel</label>
+              <label><input type="checkbox" checked /> 2FA visual por codigo</label>
+              <label><input type="checkbox" checked /> Motor antifraude demo</label>
+            </div>
+            <div class="score-card">
+              <span>Pontuacao de seguranca</span>
+              <strong id="securityScore">86/100</strong>
+              <div class="progress"><span style="width: 86%"></span></div>
+            </div>
+            <div class="form-grid">
+              <label>Codigo 2FA demo
+                <input id="twoFactorCode" type="text" inputmode="numeric" placeholder="123456" />
+              </label>
+              <button class="primary-button" id="twoFactorButton" type="button">Validar 2FA</button>
+              <label>Valor para antifraude
+                <input id="fraudAmount" type="number" min="0" placeholder="12000" />
+              </label>
+              <button class="ghost-button" id="fraudButton" type="button">Simular risco</button>
+            </div>
+            <p class="inline-result" id="securityResult">2FA demo: 123456.</p>
+          </div>
+        </section>
+
+        <section class="view" id="reports">
+          <div class="panel">
+            <div class="panel-title">
+              <h2>Relatorios e exportacao</h2>
+              <span class="badge">Gestao</span>
+            </div>
+            <div class="report-grid">
+              <article><span>Saldo atual</span><strong id="reportBalance">R$ 0,00</strong></article>
+              <article><span>Total de entradas</span><strong id="reportIncome">R$ 0,00</strong></article>
+              <article><span>Total de saidas</span><strong id="reportExpense">R$ 0,00</strong></article>
+              <article><span>Operacoes</span><strong id="reportCount">0</strong></article>
+            </div>
+            <div class="toolbar">
+              <button class="primary-button" id="exportCsvButton" type="button">Exportar CSV</button>
+              <button class="ghost-button" id="serverCsvButton" type="button">CSV servidor</button>
+              <button class="ghost-button" id="printReportButton" type="button">Preparar impressao</button>
+            </div>
+            <textarea class="export-box" id="exportBox" readonly>O CSV aparecera aqui.</textarea>
+          </div>
+        </section>
+
+        <section class="view" id="cloud">
+          <div class="panel">
+            <div class="panel-title">
+              <h2>Preparacao para nuvem</h2>
+              <span class="badge">Arquitetura</span>
+            </div>
+            <div class="cloud-map">
+              <div>App web/PWA</div>
+              <div>API Node</div>
+              <div>Banco local agora</div>
+              <div>PostgreSQL depois</div>
+              <div>Dockerfile</div>
+              <div>Variaveis .env</div>
+            </div>
+            <ol class="roadmap-list">
+              <li><span>1</span>Separar ambientes dev, homologacao e producao</li>
+              <li><span>2</span>Ativar backup automatico do banco</li>
+              <li><span>3</span>Configurar monitoramento de erros</li>
+              <li><span>4</span>Publicar API atras de HTTPS</li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="view" id="profile">
+          <div class="panel">
+            <div class="panel-title">
+              <h2>Perfil e favoritos</h2>
+              <span class="badge">Cliente</span>
+            </div>
+            <div class="form-grid">
+              <label>Nome
+                <input id="profileName" type="text" />
+              </label>
+              <label>E-mail
+                <input id="profileEmail" type="email" />
+              </label>
+              <label>Chave favorita
+                <input id="favoriteKey" type="text" placeholder="CPF, e-mail ou conta" />
+              </label>
+              <button class="primary-button" id="saveProfileButton" type="button">Salvar perfil</button>
+              <button class="ghost-button" id="addFavoriteButton" type="button">Adicionar favorito</button>
+            </div>
+            <div class="mini-list" id="favoriteList"></div>
+          </div>
+        </section>
+
+        <section class="view" id="notifications">
+          <div class="panel">
+            <div class="panel-title">
+              <h2>Alertas e proximos modulos</h2>
+              <span class="badge">Produto</span>
+            </div>
+            <div class="mini-list" id="notificationList"></div>
+            <div class="product-grid">
+              <article><strong>Biometria</strong><span>Pronto para conectar no app mobile.</span></article>
+              <article><strong>Open Finance</strong><span>Espaco reservado para integracoes futuras.</span></article>
+              <article><strong>Antifraude</strong><span>Regras por valor, horario e destino.</span></article>
+              <article><strong>Relatorios</strong><span>Exportacao em PDF/CSV na fase seguinte.</span></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="admin">
+          <div class="panel">
+            <div class="panel-title">
+              <h2>Painel administrativo</h2>
+              <span class="badge">Restrito</span>
+            </div>
+            <div class="admin-grid">
+              <div>
+                <h3>Usuarios</h3>
+                <div id="userList" class="mini-list"></div>
+              </div>
+              <div>
+                <h3>Auditoria</h3>
+                <div id="auditList" class="mini-list"></div>
+              </div>
+            </div>
+            <div class="admin-grid">
+              <div>
+                <h3>Aberturas pendentes</h3>
+                <div id="kycList" class="mini-list"></div>
+              </div>
+              <div>
+                <h3>Permissoes</h3>
+                <div class="mini-list">
+                  <div class="mini-row"><span>cliente</span><strong>conta propria</strong></div>
+                  <div class="mini-row"><span>caixa</span><strong>operacoes assistidas</strong></div>
+                  <div class="mini-row"><span>gerente</span><strong>aprovacoes</strong></div>
+                  <div class="mini-row"><span>auditor</span><strong>somente leitura</strong></div>
+                  <div class="mini-row"><span>admin</span><strong>controle total</strong></div>
+                </div>
+              </div>
+            </div>
+            <div class="status-grid admin-metrics">
+              <div><span>Clientes</span><strong id="adminUsers">0</strong></div>
+              <div><span>Operacoes</span><strong id="adminTransactions">0</strong></div>
+              <div><span>Risco</span><strong>Baixo</strong></div>
+              <div><span>Contas bloqueadas</span><strong id="adminBlocked">0</strong></div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <nav class="mobile-tabbar" aria-label="Menu rapido mobile">
+        <button class="mobile-tab active" data-view="home" type="button">Inicio</button>
+        <button class="mobile-tab" data-view="account" type="button">Conta</button>
+        <button class="mobile-tab" data-view="onboarding" type="button">Abrir</button>
+        <button class="mobile-tab" data-view="cards" type="button">Cartao</button>
+      </nav>
+    </div>
+
+    <div class="loading-overlay hidden" id="loadingOverlay">
+      <div class="loading-card">
+        <div class="loading-pulse"></div>
+        <strong>Processando com seguranca</strong>
+        <span>Aguarde um instante</span>
+      </div>
+    </div>
+
+    <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+    <script src="app.js?v=12"></script>
+  </body>
+</html>

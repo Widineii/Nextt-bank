@@ -1,0 +1,28 @@
+services:
+  nextt-bank:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATABASE_URL=postgres://nextt:nextt@postgres:5432/nextt_bank
+    volumes:
+      - nextt_data:/app/data
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=nextt
+      - POSTGRES_PASSWORD=nextt
+      - POSTGRES_DB=nextt_bank
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  nextt_data:
+  postgres_data:

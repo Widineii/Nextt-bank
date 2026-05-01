@@ -1,0 +1,27 @@
+name: Nexttt Bank CI
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Structural tests
+        run: npm test
+
+      - name: API smoke test
+        run: npm run test:api
+
+      - name: E2E prepared check
+        run: npm run test:e2e
