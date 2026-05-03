@@ -68,6 +68,18 @@ Projeto de portfolio desenvolvido por **Widinei Martins de Oliveira**: um sistem
 
 ## Como rodar
 
+### Deploy no Vercel
+
+O projeto esta pronto para publicar no Vercel como vitrine web em modo demo.
+
+Guia rapido: [DEPLOY_VERCEL.md](DEPLOY_VERCEL.md)
+
+### Deploy no Netlify
+
+Tambem esta pronto para publicar no Netlify como vitrine web em modo demo.
+
+Guia rapido: [DEPLOY_NETLIFY.md](DEPLOY_NETLIFY.md)
+
 ### Modo mais simples para portfolio
 
 Abra o arquivo:
@@ -158,7 +170,7 @@ npm run docker     # sobe ambiente com Docker Compose
 - Criar API REST documentada com OpenAPI/Swagger
 - Integrar envio real de e-mail/SMS para recuperacao de senha
 - Adicionar cobertura de testes
-- Publicar deploy em Render, Railway, Vercel ou VPS
+- Evoluir backend publico em Render, Railway ou VPS
 
 ## Autor
 
