@@ -11,5 +11,9 @@ data/
 coverage/
 dist/
 build/
+drive_file_download
+video_frames/
+video_frames2/
+video_screen_caps/
 .DS_Store
 Thumbs.db

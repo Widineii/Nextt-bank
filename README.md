@@ -135,6 +135,7 @@ npm run docker     # sobe ambiente com Docker Compose
 |-- src/                 # Servidor Node.js, config, logger e persistencia
 |-- src/db/              # Adaptadores JSON e PostgreSQL preparado
 |-- docs/                # Arquitetura, deploy, seguranca, schema e migrations
+|-- database/            # Banco JSON demo higienizado para portfolio
 |-- images/              # Screenshots usados no README
 |-- scripts/             # Backup, reset demo e captura de prints
 |-- tests/               # Testes estruturais e smoke test
@@ -153,6 +154,16 @@ npm run docker     # sobe ambiente com Docker Compose
 - Auditoria de operacoes administrativas
 - Separacao entre interface, servidor, configuracao e camada de dados
 - Dados sensiveis reais nao sao usados no projeto
+
+## Banco de Dados Demo
+
+O repositorio inclui uma base demonstrativa em:
+
+```text
+database/nextt-db.demo.json
+```
+
+Ela foi higienizada para portfolio: tokens de sessao, recuperacoes de senha e logs locais nao sao versionados. Para usar essa base localmente, copie o arquivo para `data/nextt-db.json` antes de iniciar o servidor.
 
 ## Como apresentar em entrevista
 

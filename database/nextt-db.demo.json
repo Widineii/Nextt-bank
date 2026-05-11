@@ -1,0 +1,104 @@
+﻿{
+    "users":  [
+                  {
+                      "id":  "usr_client",
+                      "name":  "Cliente Demo",
+                      "email":  "cliente@nextt.local",
+                      "role":  "cliente",
+                      "passwordHash":  "ff23f7c3408d6ef8e97be924f5d816d12542ac7fd78a9e24341a6bf575d9cd26666c9e1ddcb41a39655a169c34a217d4d1b3124bdb7f5f4c39d0b6df5b2adcc3",
+                      "passwordSalt":  "4fd8654750eb40fab5e7d2cda0ae1582",
+                      "failedAttempts":  0,
+                      "lockedUntil":  null,
+                      "status":  "active",
+                      "createdAt":  "2026-04-30T14:11:58.494Z"
+                  },
+                  {
+                      "id":  "usr_admin",
+                      "name":  "Admin Nextt",
+                      "email":  "admin@nextt.local",
+                      "role":  "admin",
+                      "passwordHash":  "34f1694e97a6730adf7e9a5d86203545ee12a863f49aebf58a6484c9487dfbfdbba5db59817966a953473bc3efd0fca2122d054af4db2eb1c3423d5af103da90",
+                      "passwordSalt":  "799fffb9a5c1a84d367b8c05eaed86fe",
+                      "failedAttempts":  0,
+                      "lockedUntil":  null,
+                      "status":  "active",
+                      "createdAt":  "2026-04-30T14:11:58.499Z"
+                  }
+              ],
+    "accounts":  [
+                     {
+                         "id":  "acc_client",
+                         "userId":  "usr_client",
+                         "number":  "0001-8840",
+                         "type":  "corrente",
+                         "status":  "Ativa",
+                         "dailyLimit":  10000,
+                         "usedToday":  0,
+                         "balance":  18420.75
+                     },
+                     {
+                         "id":  "acc_admin",
+                         "userId":  "usr_admin",
+                         "number":  "0001-0001",
+                         "type":  "operacional",
+                         "status":  "Ativa",
+                         "dailyLimit":  50000,
+                         "usedToday":  0,
+                         "balance":  0
+                     }
+                 ],
+    "transactions":  [
+                         {
+                             "id":  "ae257669-564a-4bda-a5b1-c04e5281628a",
+                             "accountId":  "acc_client",
+                             "type":  "deposit",
+                             "amount":  2000,
+                             "description":  "Deposito validado",
+                             "createdAt":  "2026-04-30T14:11:58.499Z"
+                         },
+                         {
+                             "id":  "9588c884-df43-4c16-a77a-c1f776a61188",
+                             "accountId":  "acc_client",
+                             "type":  "transfer",
+                             "amount":  -320,
+                             "description":  "Transferencia enviada",
+                             "createdAt":  "2026-04-30T14:11:58.499Z"
+                         },
+                         {
+                             "id":  "4f2e7208-4194-44e7-a5ff-0930c90bc83c",
+                             "accountId":  "acc_client",
+                             "type":  "card",
+                             "amount":  -89.9,
+                             "description":  "Compra no cartao",
+                             "createdAt":  "2026-04-30T14:11:58.499Z"
+                         }
+                     ],
+    "cards":  [
+                  {
+                      "id":  "card_client",
+                      "userId":  "usr_client",
+                      "limit":  8000,
+                      "invoice":  1820,
+                      "blocked":  false,
+                      "dueDay":  10
+                  }
+              ],
+    "investments":  [
+
+                    ],
+    "loans":  [
+
+              ],
+    "passwordResets":  [
+
+                       ],
+    "kyc":  [
+
+            ],
+    "sessions":  [
+
+                 ],
+    "audit":  [
+
+              ]
+}
