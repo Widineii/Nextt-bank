@@ -9,6 +9,28 @@ Projeto de portfolio desenvolvido por **Widinei Martins de Oliveira**: um sistem
 
 > Este projeto e demonstrativo/educacional. Ele simula fluxos bancarios para portfolio e entrevistas, sem conexao com instituicao financeira real.
 
+## Aviso importante para usar em outro computador
+
+O arquivo local `data/nextt-db.json` **nao e enviado para o GitHub** porque pode conter sessoes, tokens temporarios, logs e dados gerados durante testes locais.
+
+Para abrir o projeto em outro notebook ou PC, use a base demo segura que esta no repositorio:
+
+```bash
+git clone https://github.com/Widineii/Nextt-bank.git
+cd Nextt-bank
+mkdir data
+copy database\nextt-db.demo.json data\nextt-db.json
+npm start
+```
+
+No Linux/macOS:
+
+```bash
+mkdir -p data
+cp database/nextt-db.demo.json data/nextt-db.json
+npm start
+```
+
 ## Demonstracao
 
 ### Login
